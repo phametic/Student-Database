@@ -5,8 +5,8 @@ const config = require('../dbconfig');
 async function getMultiple(page = 1) {
     const offset = helper.getOffset(page, config.listPerPage);
     const rows = await db.query(
-        'SELECT id, first_name, last_name, age, grade, address, city, postal_code, phone_number FROM students LIMIT 10', 
-        [offset, config.listPerPage] 
+        'SELECT id, first_name, last_name, age, grade, address, city, postal_code, phone_number FROM students LIMIT ?,?', 
+        [offset + "", config.listPerPage + ""] 
         );
         /*'SELECT id, first_name, last_name, age, grade, address, city, postal_code, phone_number FROM students LIMIT ?,?', 
         [offset, config.listPerPage]);*/
