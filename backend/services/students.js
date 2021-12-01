@@ -20,6 +20,26 @@ async function getMultiple(page = 1) {
     }
 }
 
+//POST
+async function create(students) {
+    const result = await db.query(
+        `INSERT INTO students 
+        (first_name, last_name, age, grade, address, city, postal_code, phone_number)
+        VALUES
+        (?, ?, ?, ?, ?, ?, ?, ?)`,
+        [students.first_name, students.last_name, students.age, students.grade, students.address, students.city, students.postal_code, student.phone_number]
+    );
+
+    let message = "Error in creating programming langauge";
+
+    if(result.affectedRows) {
+        message = "Student created successfully";
+    }
+
+    return {message};
+}
+
 module.exports = {
-    getMultiple
+    getMultiple,
+    create
 }
